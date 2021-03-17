@@ -11,6 +11,7 @@ public class PlayersEntity {
     private int playerId;
     private String firstName;
     private String lastName;
+    private String position;
     private int points;
     private int rebounds;
     private int assists;
@@ -23,6 +24,7 @@ public class PlayersEntity {
 
     @Id
     @Column(name = "player_id")
+    @JsonProperty("personId")
     public int getPlayerId() {
         return playerId;
     }
@@ -33,6 +35,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "first_name")
+    @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -43,6 +46,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "last_name")
+    @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
     }
@@ -52,7 +56,19 @@ public class PlayersEntity {
     }
 
     @Basic
+    @Column(name = "position")
+    @JsonProperty("posFull")
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    @Basic
     @Column(name = "points")
+    @JsonProperty("ppg")
     public int getPoints() {
         return points;
     }
@@ -63,6 +79,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "rebounds")
+    @JsonProperty("rpg")
     public int getRebounds() {
         return rebounds;
     }
@@ -73,6 +90,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "assists")
+    @JsonProperty("apg")
     public int getAssists() {
         return assists;
     }
@@ -83,6 +101,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "steals")
+    @JsonProperty("spg")
     public int getSteals() {
         return steals;
     }
@@ -93,6 +112,7 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "blocks")
+    @JsonProperty("bpg")
     public int getBlocks() {
         return blocks;
     }
@@ -102,17 +122,8 @@ public class PlayersEntity {
     }
 
     @Basic
-    @Column(name = "fouls")
-    public int getFouls() {
-        return fouls;
-    }
-
-    public void setFouls(int fouls) {
-        this.fouls = fouls;
-    }
-
-    @Basic
     @Column(name = "turnovers")
+    @JsonProperty("topg")
     public int getTurnovers() {
         return turnovers;
     }
@@ -123,16 +134,18 @@ public class PlayersEntity {
 
     @Basic
     @Column(name = "fg%")
-    public double getFg() {
+    @JsonProperty("fgp")
+    public double getFieldGoalPercent() {
         return fieldGoalPercent;
     }
 
-    public void setFg(double fieldGoalPercent) {
+    public void setFieldGoalPercent(double fieldGoalPercent) {
         this.fieldGoalPercent = fieldGoalPercent;
     }
 
     @Basic
     @Column(name = "3pt%")
+    @JsonProperty("tpp")
     public double getThreePointPercent() {
         return threePointPercent;
     }
@@ -146,11 +159,11 @@ public class PlayersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayersEntity that = (PlayersEntity) o;
-        return playerId == that.playerId && points == that.points && rebounds == that.rebounds && assists == that.assists && steals == that.steals && blocks == that.blocks && fouls == that.fouls && turnovers == that.turnovers && Double.compare(that.fieldGoalPercent, fieldGoalPercent) == 0 && Double.compare(that.threePointPercent, threePointPercent) == 0 && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+        return playerId == that.playerId && points == that.points && rebounds == that.rebounds && assists == that.assists && steals == that.steals && blocks == that.blocks && fouls == that.fouls && turnovers == that.turnovers && Double.compare(that.fieldGoalPercent, fieldGoalPercent) == 0 && Double.compare(that.threePointPercent, threePointPercent) == 0 && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerId, firstName, lastName, points, rebounds, assists, steals, blocks, fouls, turnovers, fieldGoalPercent, threePointPercent);
+        return Objects.hash(playerId, firstName, lastName, position, points, rebounds, assists, steals, blocks, fouls, turnovers, fieldGoalPercent, threePointPercent);
     }
 }
