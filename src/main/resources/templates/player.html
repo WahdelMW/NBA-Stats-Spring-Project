@@ -2,20 +2,55 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Players</title>
+    <title>Player</title>
 </head>
 <body>
+<div th:insert="fragments/header.html"></div>
 <h1 th:text="|${player.firstName} ${player.lastName} Stats Page|"></h1>
 <table>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Full Name</th>
         <th>ppg</th>
+        <th>rpg</th>
+        <th>apg</th>
+        <th>mpg</th>
+        <th>topg</th>
+        <th>spg</th>
+        <th>bpg</th>
+        <th>3p%</th>
+        <th>ft%</th>
+        <th>fg%</th>
+        <th>fgm</th>
+        <th>fga</th>
+        <th>3pm</th>
+        <th>3pa</th>
+        <th>ftm</th>
+        <th>fta</th>
+        <th>gp</th>
+        <th>gs</th>
+        <th>+-</th>
     </tr>
     <tr>
-        <td th:text="${player.firstName}"></td>
-        <td th:text="${player.lastName}"></td>
+        <td th:text="|${player.firstName} ${player.lastName}|"></td>
         <td th:text="${playerStats.getPpg()}"></td>
+        <td th:text="${playerStats.getRpg()}"></td>
+        <td th:text="${playerStats.getApg()}"></td>
+        <td th:text="${playerStats.getMpg()}"></td>
+        <td th:text="${playerStats.getTopg()}"></td>
+        <td th:text="${playerStats.getSpg()}"></td>
+        <td th:text="${playerStats.getBpg()}"></td>
+        <td th:text="|${playerStats.getTpp()}%|"></td>
+        <td th:text="|${playerStats.getFtp()}%|"></td>
+        <td th:text="|${playerStats.getFgp()}%|"></td>
+        <td th:text="${playerStats.getFgm()}"></td>
+        <td th:text="${playerStats.getFga()}"></td>
+        <td th:text="${playerStats.getTpm()}"></td>
+        <td th:text="${playerStats.getTpa()}"></td>
+        <td th:text="${playerStats.getFtm()}"></td>
+        <td th:text="${playerStats.getFta()}"></td>
+        <td th:text="${playerStats.getGamesPlayed()}"></td>
+        <td th:text="${playerStats.getGamesStarted()}"></td>
+        <td th:text="${playerStats.getPlusMinus()}"></td>
     </tr>
 </table>
 </body>
