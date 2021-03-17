@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+</head>
+<body>
+<h1>List of all current NBA players</h1>
+<table>
+    <table>
+        <tr>
+            <th>Person ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Team ID</th>
+        </tr>
+        <tr th:each="player : ${players}">
+            <td th:text="${player.personId}"></td>
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.lastName}"></td>
+            <td th:text="${player.teamId}"></td>
+        </tr>
+</table>
+</body>
+</html>

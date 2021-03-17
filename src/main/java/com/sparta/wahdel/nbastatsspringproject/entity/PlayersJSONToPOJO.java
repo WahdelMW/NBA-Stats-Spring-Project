@@ -6,25 +6,64 @@ import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PlayerPOJO {
+public class PlayersJSONToPOJO {
 
     private Root root;
+    private List<PlayersPOJO> players;
 
-    public PlayerPOJO() throws IOException {
+    public PlayersJSONToPOJO() throws IOException {
         ObjectMapper om = new ObjectMapper();
         root = om.readValue(new URL("http://data.nba.net/data/10s/prod/v1/2020/players.json"), Root.class);
+        players = root.league.standard;
+    }
+
+    public HashMap<Integer, PlayersPOJO> getPlayers() {
+        HashMap<Integer, PlayersPOJO> playersMap = new HashMap<>();
+        for (PlayersPOJO player: players) {
+            playersMap.put(Integer.parseInt(player.getPersonId()), player);
+        }
+        return playersMap;
+    }
+
+    public List<PlayersPOJO> getPlayerList() {
+        return players;
     }
 
     public String getFirstName() {
-        String firstName = root.league.standard.get(0).getFirstName();
-        return firstName;
+        return root.league.standard.get(0).getFirstName();
+    }
+
+    public String getLastName() {
+        return root.league.standard.get(0).getLastName();
+    }
+
+    public String getTeamId() {
+        return root.league.standard.get(0).getTeamId();
+    }
+
+    public String getPlayerId() {
+        return root.league.standard.get(0).getPersonId();
+    }
+
+    public int getPlayerCount() {
+        return root.league.standard.size();
+    }
+
+    @Override
+    public String toString() {
+        return "PlayersListPOJO{" +
+                getFirstName() + " " +
+                getLastName() + " " +
+                getPlayerId() + " " +
+                getTeamId() + "}";
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Standard{
+    public static class PlayersPOJO{
         private String firstName;
         private String lastName;
         private String personId;
@@ -64,12 +103,12 @@ public class PlayerPOJO {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class League{
-        public List<Standard> standard;
+    private static class League{
+        public List<PlayersPOJO> standard;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Root{
+    private static class Root{
         public League league;
     }
 
