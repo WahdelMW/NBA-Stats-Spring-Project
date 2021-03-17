@@ -3,19 +3,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
 import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PlayersJSONToPOJO {
+public class PlayersDetailsPOJO {
 
     private Root root;
     private List<PlayersPOJO> players;
 
-    public PlayersJSONToPOJO() throws IOException {
+    public PlayersDetailsPOJO() throws IOException {
         ObjectMapper om = new ObjectMapper();
         root = om.readValue(new URL("http://data.nba.net/data/10s/prod/v1/2020/players.json"), Root.class);
         players = root.league.standard;
@@ -24,7 +23,7 @@ public class PlayersJSONToPOJO {
     public HashMap<Integer, PlayersPOJO> getPlayers() {
         HashMap<Integer, PlayersPOJO> playersMap = new HashMap<>();
         for (PlayersPOJO player: players) {
-            playersMap.put(Integer.parseInt(player.getPersonId()), player);
+            playersMap.put(player.getPersonId(), player);
         }
         return playersMap;
     }
@@ -41,11 +40,11 @@ public class PlayersJSONToPOJO {
         return root.league.standard.get(0).getLastName();
     }
 
-    public String getTeamId() {
+    public int getTeamId() {
         return root.league.standard.get(0).getTeamId();
     }
 
-    public String getPlayerId() {
+    public int getPlayerId() {
         return root.league.standard.get(0).getPersonId();
     }
 
@@ -66,8 +65,8 @@ public class PlayersJSONToPOJO {
     public static class PlayersPOJO{
         private String firstName;
         private String lastName;
-        private String personId;
-        private String teamId;
+        private int personId;
+        private int teamId;
 
         public String getFirstName() {
             return firstName;
@@ -85,19 +84,19 @@ public class PlayersJSONToPOJO {
             this.lastName = lastName;
         }
 
-        public String getPersonId() {
+        public int getPersonId() {
             return personId;
         }
 
-        public void setPersonId(String personId) {
+        public void setPersonId(int personId) {
             this.personId = personId;
         }
 
-        public String getTeamId() {
+        public int getTeamId() {
             return teamId;
         }
 
-        public void setTeamId(String teamId) {
+        public void setTeamId(int teamId) {
             this.teamId = teamId;
         }
     }

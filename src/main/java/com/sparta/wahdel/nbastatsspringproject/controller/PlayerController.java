@@ -1,7 +1,7 @@
 package com.sparta.wahdel.nbastatsspringproject.controller;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersEntity;
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersJSONToPOJO;
+import com.sparta.wahdel.nbastatsspringproject.entity.PlayerStatsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,39 +15,38 @@ import java.io.IOException;
 public class PlayerController {
 
     private PlayerService playerService;
-    private PlayersJSONToPOJO playersJSONToPOJO;
+    private PlayersDetailsPOJO playersDetailsPOJO;
 
     @Autowired
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
         try {
-            playersJSONToPOJO = new PlayersJSONToPOJO();
+            playersDetailsPOJO = new PlayersDetailsPOJO();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-//    @GetMapping("/players")
-//    public String findAll(ModelMap modelMap) {
-//        Iterable<PlayersEntity> playersEntities = playerService.getAllPlayers();
-//        modelMap.addAttribute("players", playersEntities);
-//        return "players";
-//    }
-
-    @GetMapping("/players/{id}")
-    public String findById(@PathVariable(value = "id") int playerId, ModelMap modelMap) {
-        PlayersEntity playersEntity = playerService.getById(playerId);
-        modelMap.addAttribute("player", playersEntity);
-        return "player";
-    }
-
     @GetMapping("/players")
     public String getAllPlayers(ModelMap modelMap) {
-        Iterable<PlayersJSONToPOJO.PlayersPOJO> players = playersJSONToPOJO.getPlayerList();
+        Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playersDetailsPOJO.getPlayerList();
         System.out.println(players);
         modelMap.addAttribute("players", players);
         return "players";
     }
 
+    @GetMapping("/players/{id}")
+    public String findById(@PathVariable(value = "id") int playerId, ModelMap modelMap) {
+        PlayersDetailsPOJO.PlayersPOJO player = playersDetailsPOJO.getPlayers().get(playerId);
+        try {
+            PlayerStatsPOJO playerStatsPOJO = new PlayerStatsPOJO(playerId);
+            PlayerStatsPOJO.Latest playerStats = playerStatsPOJO.getPlayerStats();
+            modelMap.addAttribute("player", player);
+            modelMap.addAttribute("playerStats", playerStats);
+            return "player";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
 }
