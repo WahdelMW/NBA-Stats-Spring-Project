@@ -4,23 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "teams", schema = "nba_stats", catalog = "")
+@Table(name = "teams", schema = "nba_stats")
 public class TeamsEntity {
-    private Long id;
     private int teamId;
     private String cityName;
     private String teamName;
     private String conference;
-
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Id
     @Column(name = "team_id")

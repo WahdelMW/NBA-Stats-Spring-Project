@@ -1,12 +1,13 @@
 package com.sparta.wahdel.nbastatsspringproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "players", schema = "nba_stats")
 public class PlayersEntity {
-    private Long id;
     private int playerId;
     private String firstName;
     private String lastName;
@@ -17,18 +18,8 @@ public class PlayersEntity {
     private int blocks;
     private int fouls;
     private int turnovers;
-    private double fg;
-    private double ThreePt;
-
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private double fieldGoalPercent;
+    private double threePointPercent;
 
     @Id
     @Column(name = "player_id")
@@ -133,21 +124,21 @@ public class PlayersEntity {
     @Basic
     @Column(name = "fg%")
     public double getFg() {
-        return fg;
+        return fieldGoalPercent;
     }
 
-    public void setFg(double fg) {
-        this.fg = fg;
+    public void setFg(double fieldGoalPercent) {
+        this.fieldGoalPercent = fieldGoalPercent;
     }
 
     @Basic
     @Column(name = "3pt%")
-    public double getThreePt() {
-        return ThreePt;
+    public double getThreePointPercent() {
+        return threePointPercent;
     }
 
-    public void setThreePt(double threePt) {
-        ThreePt = threePt;
+    public void setThreePointPercent(double threePointPercent) {
+        this.threePointPercent = threePointPercent;
     }
 
     @Override
@@ -155,11 +146,11 @@ public class PlayersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayersEntity that = (PlayersEntity) o;
-        return playerId == that.playerId && points == that.points && rebounds == that.rebounds && assists == that.assists && steals == that.steals && blocks == that.blocks && fouls == that.fouls && turnovers == that.turnovers && Double.compare(that.fg, fg) == 0 && Double.compare(that.ThreePt, ThreePt) == 0 && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+        return playerId == that.playerId && points == that.points && rebounds == that.rebounds && assists == that.assists && steals == that.steals && blocks == that.blocks && fouls == that.fouls && turnovers == that.turnovers && Double.compare(that.fieldGoalPercent, fieldGoalPercent) == 0 && Double.compare(that.threePointPercent, threePointPercent) == 0 && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerId, firstName, lastName, points, rebounds, assists, steals, blocks, fouls, turnovers, fg, ThreePt);
+        return Objects.hash(playerId, firstName, lastName, points, rebounds, assists, steals, blocks, fouls, turnovers, fieldGoalPercent, threePointPercent);
     }
 }
