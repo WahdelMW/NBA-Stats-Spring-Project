@@ -9,7 +9,6 @@ public class TeamsEntity {
     private int teamId;
     private String cityName;
     private String teamName;
-    private String conference;
 
     @Id
     @Column(name = "team_id")
@@ -41,26 +40,16 @@ public class TeamsEntity {
         this.teamName = teamName;
     }
 
-    @Basic
-    @Column(name = "conference")
-    public String getConference() {
-        return conference;
-    }
-
-    public void setConference(String conference) {
-        this.conference = conference;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeamsEntity that = (TeamsEntity) o;
-        return teamId == that.teamId && Objects.equals(cityName, that.cityName) && Objects.equals(teamName, that.teamName) && Objects.equals(conference, that.conference);
+        return teamId == that.teamId && Objects.equals(cityName, that.cityName) && Objects.equals(teamName, that.teamName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teamId, cityName, teamName, conference);
+        return Objects.hash(teamId, cityName, teamName);
     }
 }

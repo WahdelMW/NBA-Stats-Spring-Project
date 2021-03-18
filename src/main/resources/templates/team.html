@@ -6,15 +6,13 @@
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
-<h1 th:text="|${team.teamName}|"></h1>
+<h1 th:text="|${team.cityName} ${team.teamName}|"></h1>
 <table>
     <tr>
-        <th>Team Name</th>
-        <th>Person ID</th>
+        <th>Add to fantasy team</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Height</th>
-        <th>Team ID</th>
         <th>Season Stats</th>
     </tr>
     <tr th:each="player : ${players}">

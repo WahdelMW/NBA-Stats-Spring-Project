@@ -2,6 +2,7 @@ package com.sparta.wahdel.nbastatsspringproject.controller;
 
 import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.entity.TeamsEntity;
+import com.sparta.wahdel.nbastatsspringproject.repository.PlayerPojoRepository;
 import com.sparta.wahdel.nbastatsspringproject.service.PlayerService;
 import com.sparta.wahdel.nbastatsspringproject.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,14 @@ public class TeamController {
     public String getTeamById(@PathVariable(value = "id") int teamId, ModelMap modelMap) {
         TeamsEntity team = teamService.getTeamById(teamId);
         try {
-            PlayersDetailsPOJO playersDetailsPOJO = new PlayersDetailsPOJO();
-            Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playersDetailsPOJO.getPlayerList();
+            PlayerPojoRepository playerPojoRepository = new PlayerPojoRepository(new PlayersDetailsPOJO());
+            Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playerPojoRepository.getPlayerByTeamId(teamId);
             modelMap.addAttribute("team", team);
             modelMap.addAttribute("players", players);
             return "team";
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "teamError";
+        return "fantasyTeams";
     }
 }

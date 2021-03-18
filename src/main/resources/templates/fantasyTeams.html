@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
-<h1>List of all current NBA players</h1>
+<h1>List of all your fantasy teams</h1>
 <table>
     <tr>
         <th>Team Name</th>
@@ -14,7 +14,7 @@
     </tr>
     <tr th:each="team : ${fantasyTeams}">
         <td th:text="|${team.cityName} ${team.teamName}|"></td>
-        <td><a th:href="@{/team/{teamId}(teamId=${team.teamId})}" th:text="View"></a></td>
+        <td><a th:href="@{/teams/{teamId}(teamId=${team.teamId})}" th:text="View"></a></td>
     </tr>
 </table>
 </body>
