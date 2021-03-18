@@ -13,6 +13,7 @@
         <th>Person ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Height</th>
         <th>Team ID</th>
         <th>Season Stats</th>
     </tr>
@@ -23,6 +24,7 @@
         <td th:text="${player.personId}"></td>
         <td th:text="${player.firstName}"></td>
         <td th:text="${player.lastName}"></td>
+        <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
         <td th:text="${player.teamId}"></td>
         <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
     </tr>

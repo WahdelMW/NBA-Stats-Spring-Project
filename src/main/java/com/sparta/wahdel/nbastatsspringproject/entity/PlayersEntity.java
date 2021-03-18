@@ -15,7 +15,6 @@ public class PlayersEntity {
 
     @Id
     @Column(name = "player_id")
-//    @JsonProperty("pId")
     public int getPlayerId() {
         return playerId;
     }

@@ -123,8 +123,24 @@ public class PlayerStatsPOJO {
         private int gamesStarted;
         private int plusMinus;
 
+        private double convertIfNull(double stat) {
+            double value = stat;
+            if (value < 0.0) {
+                value = 0.0;
+            }
+            return value;
+        }
+
+        private int convertIfNull(int stat) {
+            int value = stat;
+            if (value < 0) {
+                value = 0;
+            }
+            return value;
+        }
+
         public double getPpg() {
-            return ppg;
+            return convertIfNull(ppg);
         }
 
         public void setPpg(double ppg) {
@@ -132,7 +148,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getRpg() {
-            return rpg;
+            return convertIfNull(rpg);
         }
 
         public void setRpg(double rpg) {
@@ -140,7 +156,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getApg() {
-            return apg;
+            return convertIfNull(apg);
         }
 
         public void setApg(double apg) {
@@ -148,7 +164,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getMpg() {
-            return mpg;
+            return convertIfNull(mpg);
         }
 
         public void setMpg(double mpg) {
@@ -156,7 +172,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getTopg() {
-            return topg;
+            return convertIfNull(topg);
         }
 
         public void setTopg(double topg) {
@@ -164,7 +180,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getSpg() {
-            return spg;
+            return convertIfNull(spg);
         }
 
         public void setSpg(double spg) {
@@ -172,7 +188,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getBpg() {
-            return bpg;
+            return convertIfNull(bpg);
         }
 
         public void setBpg(double bpg) {
@@ -180,7 +196,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getTpp() {
-            return tpp;
+            return convertIfNull(tpp);
         }
 
         public void setTpp(double tpp) {
@@ -188,7 +204,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getFtp() {
-            return ftp;
+            return convertIfNull(ftp);
         }
 
         public void setFtp(double ftp) {
@@ -196,7 +212,7 @@ public class PlayerStatsPOJO {
         }
 
         public double getFgp() {
-            return fgp;
+            return convertIfNull(fgp);
         }
 
         public void setFgp(double fgp) {
@@ -204,7 +220,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getFgm() {
-            return fgm;
+            return convertIfNull(fgm);
         }
 
         public void setFgm(int fgm) {
@@ -212,7 +228,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getFga() {
-            return fga;
+            return convertIfNull(fga);
         }
 
         public void setFga(int fga) {
@@ -220,7 +236,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getTpm() {
-            return tpm;
+            return convertIfNull(tpm);
         }
 
         public void setTpm(int tpm) {
@@ -228,7 +244,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getTpa() {
-            return tpa;
+            return convertIfNull(tpa);
         }
 
         public void setTpa(int tpa) {
@@ -236,7 +252,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getFtm() {
-            return ftm;
+            return convertIfNull(ftm);
         }
 
         public void setFtm(int ftm) {
@@ -244,7 +260,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getFta() {
-            return fta;
+            return convertIfNull(fta);
         }
 
         public void setFta(int fta) {
@@ -252,7 +268,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getGamesPlayed() {
-            return gamesPlayed;
+            return convertIfNull(gamesPlayed);
         }
 
         public void setGamesPlayed(int gamesPlayed) {
@@ -260,7 +276,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getGamesStarted() {
-            return gamesStarted;
+            return convertIfNull(gamesStarted);
         }
 
         public void setGamesStarted(int gamesStarted) {
@@ -268,7 +284,7 @@ public class PlayerStatsPOJO {
         }
 
         public int getPlusMinus() {
-            return plusMinus;
+            return convertIfNull( plusMinus);
         }
 
         public void setPlusMinus(int plusMinus) {
