@@ -24,4 +24,8 @@ public class PlayerService {
     public PlayersEntity getById(int playerId) {
         return playerRepository.findById(playerId).orElseThrow(() -> new NullPointerException());
     }
+
+    public Iterable<Integer> getAllIdsOfPlayersOnTeam(int teamId) {
+        return playerRepository.findPlayerIdByTeamId(teamId);
+    }
 }

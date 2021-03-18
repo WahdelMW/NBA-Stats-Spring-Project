@@ -9,6 +9,7 @@ public class TeamsEntity {
     private int teamId;
     private String cityName;
     private String teamName;
+    private boolean fantasy;
 
     @Id
     @Column(name = "team_id")
@@ -38,6 +39,16 @@ public class TeamsEntity {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    @Basic
+    @Column(name = "isFantasy")
+    public boolean isFantasy() {
+        return fantasy;
+    }
+
+    public void setFantasy(boolean fantasy) {
+        this.fantasy = fantasy;
     }
 
     @Override

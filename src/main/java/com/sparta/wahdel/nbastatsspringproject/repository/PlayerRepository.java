@@ -1,9 +1,16 @@
 package com.sparta.wahdel.nbastatsspringproject.repository;
 
 import com.sparta.wahdel.nbastatsspringproject.entity.PlayersEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PlayerRepository extends CrudRepository<PlayersEntity, Integer> {
+
+    @Query("SELECT p.playerId FROM PlayersEntity p WHERE p.teamId = ?1")
+    List<Integer> findPlayerIdByTeamId(Integer teamId);
+
 }
