@@ -30,7 +30,6 @@ public class PlayerController {
     @GetMapping("/players")
     public String getAllPlayers(ModelMap modelMap) {
         Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playersDetailsPOJO.getPlayerList();
-        System.out.println(players);
         modelMap.addAttribute("players", players);
         return "players";
     }
@@ -49,4 +48,11 @@ public class PlayerController {
         }
         return "error";
     }
+
+//    @GetMapping("/teams/{id}")
+//    public String getPlayerOnTeam(@PathVariable(value = "id") int teamId, ModelMap modelMap) {
+//        Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playersDetailsPOJO.getPlayerList();
+//        modelMap.addAttribute("players", players);
+//        return "team";
+//    }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h1 th:text="|${team.teamName}|"></h1>
+<table>
+    <tr>
+        <th>Team Name</th>
+        <th>Person ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Height</th>
+        <th>Team ID</th>
+        <th>Season Stats</th>
+    </tr>
+    <tr th:each="player : ${players}">
+        <div th:if="${player.teamId} eq ${team.teamId}">
+            <form method="post" th:action="@{/rest/addPlayer/{personId}(personId=${player.personId})}">
+                <td>
+                    <button type="submit" th:text="Add"/>
+                </td>
+            </form>
+            <td th:text="${player.personId}"></td>
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.lastName}"></td>
+            <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
+            <td th:text="${player.teamId}"></td>
+            <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
+        </div>
+    </tr>
+</table>
+</body>
+</html>
