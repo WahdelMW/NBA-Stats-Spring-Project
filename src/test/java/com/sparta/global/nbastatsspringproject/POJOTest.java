@@ -4,9 +4,7 @@ import com.sparta.wahdel.nbastatsspringproject.entity.PlayerStatsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,13 +15,9 @@ import java.util.List;
 @SpringBootTest
 public class POJOTest {
 
-    @Autowired
     private static PlayersDetailsPOJO playersDetailsPOJO;
-
-    private static PlayerStatsPOJO playerStatsPOJO;
-
-    private static int lbjPlayerId;
-
+    private static PlayerStatsPOJO kingJamesStatsPOJO;
+    private static PlayerStatsPOJO notPlayedStatsPOJO;
     private static List<PlayersDetailsPOJO.PlayersPOJO> players;
 
 
@@ -31,18 +25,15 @@ public class POJOTest {
     public static void setupAll() {
         try {
             playersDetailsPOJO = new PlayersDetailsPOJO();
-            lbjPlayerId = 2544;
-            playerStatsPOJO = new PlayerStatsPOJO(lbjPlayerId);
+            int kingJamesPlayerId = 2544;
+            int notPlayedPlayerId = 1630261;
+            kingJamesStatsPOJO = new PlayerStatsPOJO(kingJamesPlayerId);
+            notPlayedStatsPOJO = new PlayerStatsPOJO(notPlayedPlayerId);
             players = playersDetailsPOJO.getPlayerList();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-//    @BeforeEach
-//    public void setupEach() {
-//
-//    }
 
     @Test
     void checkIfNullPlayerDetailsPOJO() {
@@ -87,127 +78,247 @@ public class POJOTest {
     @Test
     void getNoValuePlayerTeamId() {
         int teamId = players.get(players.size() - 1).getTeamId();
-        Assertions.assertTrue(teamId == 0);
+        Assertions.assertEquals(teamId, 0);
     }
 
-    //    PlayerStatsPOJO
+    //PlayerStatsPOJO
     @Test
     void checkIfNullPlayerStatsPOJO() {
-        Assertions.assertNotNull(playerStatsPOJO);
+        Assertions.assertNotNull(kingJamesStatsPOJO);
     }
 
     @Test
     void getPpg() {
-        double pointsPerGame = playerStatsPOJO.getPpg();
+        double pointsPerGame = kingJamesStatsPOJO.getPpg();
         Assertions.assertTrue(pointsPerGame >= 0.0);
     }
 
     @Test
     void getRpg() {
-        double reboundsPerGame = playerStatsPOJO.getRpg();
+        double reboundsPerGame = kingJamesStatsPOJO.getRpg();
         Assertions.assertTrue(reboundsPerGame >= 0.0);
     }
 
     @Test
     void getApg() {
-        double assistsPerGame = playerStatsPOJO.getApg();
+        double assistsPerGame = kingJamesStatsPOJO.getApg();
         Assertions.assertTrue(assistsPerGame >= 0.0);
     }
 
     @Test
     void getMpg() {
-        double minutesPerGame = playerStatsPOJO.getMpg();
+        double minutesPerGame = kingJamesStatsPOJO.getMpg();
         Assertions.assertTrue(minutesPerGame >= 0.0);
     }
 
     @Test
     void getTopg() {
-        double turnoversPerGame = playerStatsPOJO.getTopg();
+        double turnoversPerGame = kingJamesStatsPOJO.getTopg();
         Assertions.assertTrue(turnoversPerGame >= 0.0);
     }
 
     @Test
     void getSpg() {
-        double stealsPerGame = playerStatsPOJO.getSpg();
+        double stealsPerGame = kingJamesStatsPOJO.getSpg();
         Assertions.assertTrue(stealsPerGame >= 0.0);
     }
 
     @Test
     void getBpg() {
-        double blocksPerGame = playerStatsPOJO.getBpg();
+        double blocksPerGame = kingJamesStatsPOJO.getBpg();
         Assertions.assertTrue(blocksPerGame >= 0.0);
     }
 
     @Test
     void getTpp() {
-        double threePointPercentage = playerStatsPOJO.getTpp();
+        double threePointPercentage = kingJamesStatsPOJO.getTpp();
         Assertions.assertTrue(threePointPercentage >= 0.0);
     }
 
     @Test
     void getFtp() {
-        double freeThrowPercentage = playerStatsPOJO.getFtp();
+        double freeThrowPercentage = kingJamesStatsPOJO.getFtp();
         Assertions.assertTrue(freeThrowPercentage >= 0.0);
     }
 
     @Test
     void getFgp() {
-        double fieldGoalPercentage = playerStatsPOJO.getFgp();
+        double fieldGoalPercentage = kingJamesStatsPOJO.getFgp();
         Assertions.assertTrue(fieldGoalPercentage >= 0.0);
     }
 
     @Test
     void getFgm() {
-        int fieldGoalsMade = playerStatsPOJO.getFgm();
+        int fieldGoalsMade = kingJamesStatsPOJO.getFgm();
         Assertions.assertTrue(fieldGoalsMade >= 0);
     }
 
     @Test
     void getFga() {
-        int fieldGoalsAttempted = playerStatsPOJO.getFga();
+        int fieldGoalsAttempted = kingJamesStatsPOJO.getFga();
         Assertions.assertTrue(fieldGoalsAttempted >= 0);
     }
 
     @Test
     void getTpm() {
-        int threePointersMade = playerStatsPOJO.getTpm();
+        int threePointersMade = kingJamesStatsPOJO.getTpm();
         Assertions.assertTrue(threePointersMade >= 0);
     }
 
     @Test
     void getTpa() {
-        int threePointersAttempted = playerStatsPOJO.getTpa();
+        int threePointersAttempted = kingJamesStatsPOJO.getTpa();
         Assertions.assertTrue(threePointersAttempted >= 0);
     }
 
     @Test
     void getFtm() {
-        int freeThrowsMade = playerStatsPOJO.getFtm();
+        int freeThrowsMade = kingJamesStatsPOJO.getFtm();
         Assertions.assertTrue(freeThrowsMade >= 0);
     }
 
     @Test
     void getFta() {
-        int freeThrowsAttempted = playerStatsPOJO.getFta();
+        int freeThrowsAttempted = kingJamesStatsPOJO.getFta();
         Assertions.assertTrue(freeThrowsAttempted >= 0);
     }
 
     @Test
     void getGamesPlayed() {
-        int gamesPlayed = playerStatsPOJO.getGamesPlayed();
+        int gamesPlayed = kingJamesStatsPOJO.getGamesPlayed();
         Assertions.assertTrue(gamesPlayed >= 0);
     }
 
     @Test
     void getGamesStarted() {
-        int gamesStarted = playerStatsPOJO.getGamesStarted();
+        int gamesStarted = kingJamesStatsPOJO.getGamesStarted();
         Assertions.assertTrue(gamesStarted >= 0);
     }
 
     @Test
     void getPlusMinus() {
-        int plusMinus = playerStatsPOJO.getPlusMinus();
+        int plusMinus = kingJamesStatsPOJO.getPlusMinus();
         Assertions.assertTrue(plusMinus >= 0);
+    }
+
+    //Stats for player not played in season
+    @Test
+    void checkIfNullPlayerStatsPOJONotPlayed() {
+        Assertions.assertNotNull(notPlayedStatsPOJO);
+    }
+
+    @Test
+    void getPpgNotPlayed() {
+        double pointsPerGame = notPlayedStatsPOJO.getPpg();
+        Assertions.assertEquals(-1.0, pointsPerGame);
+    }
+
+    @Test
+    void getRpgNotPlayed() {
+        double reboundsPerGame = notPlayedStatsPOJO.getRpg();
+        Assertions.assertEquals(-1.0, reboundsPerGame);
+    }
+
+    @Test
+    void getApgNotPlayed() {
+        double assistsPerGame = notPlayedStatsPOJO.getApg();
+        Assertions.assertEquals(-1.0, assistsPerGame);
+    }
+
+    @Test
+    void getMpgNotPlayed() {
+        double minutesPerGame = notPlayedStatsPOJO.getMpg();
+        Assertions.assertEquals(-1.0, minutesPerGame);
+    }
+
+    @Test
+    void getTopgNotPlayed() {
+        double turnoversPerGame = notPlayedStatsPOJO.getTopg();
+        Assertions.assertEquals(-1.0, turnoversPerGame);
+    }
+
+    @Test
+    void getSpgNotPlayed() {
+        double stealsPerGame = notPlayedStatsPOJO.getSpg();
+        Assertions.assertEquals(-1.0, stealsPerGame);
+    }
+
+    @Test
+    void getBpgNotPlayed() {
+        double blocksPerGame = notPlayedStatsPOJO.getBpg();
+        Assertions.assertEquals(-1.0, blocksPerGame);
+    }
+
+    @Test
+    void getTppNotPlayed() {
+        double threePointPercentage = notPlayedStatsPOJO.getTpp();
+        Assertions.assertEquals(-1.0, threePointPercentage);
+    }
+
+    @Test
+    void getFtpNotPlayed() {
+        double freeThrowPercentage = notPlayedStatsPOJO.getFtp();
+        Assertions.assertEquals(-1.0, freeThrowPercentage);
+    }
+
+    @Test
+    void getFgpNotPlayed() {
+        double fieldGoalPercentage = notPlayedStatsPOJO.getFgp();
+        Assertions.assertEquals(-1.0, fieldGoalPercentage);
+    }
+
+    @Test
+    void getFgmNotPlayed() {
+        int fieldGoalsMade = notPlayedStatsPOJO.getFgm();
+        Assertions.assertEquals(-1, fieldGoalsMade);
+    }
+
+    @Test
+    void getFgaNotPlayed() {
+        int fieldGoalsAttempted = notPlayedStatsPOJO.getFga();
+        Assertions.assertEquals(-1, fieldGoalsAttempted);
+    }
+
+    @Test
+    void getTpmNotPlayed() {
+        int threePointersMade = notPlayedStatsPOJO.getTpm();
+        Assertions.assertEquals(-1, threePointersMade);
+    }
+
+    @Test
+    void getTpaNotPlayed() {
+        int threePointersAttempted = notPlayedStatsPOJO.getTpa();
+        Assertions.assertEquals(-1, threePointersAttempted);
+    }
+
+    @Test
+    void getFtmNotPlayed() {
+        int freeThrowsMade = notPlayedStatsPOJO.getFtm();
+        Assertions.assertEquals(-1, freeThrowsMade);
+    }
+
+    @Test
+    void getFtaNotPlayed() {
+        int freeThrowsAttempted = notPlayedStatsPOJO.getFta();
+        Assertions.assertEquals(-1, freeThrowsAttempted);
+    }
+
+    @Test
+    void getGamesPlayedNotPlayed() {
+        int gamesPlayed = notPlayedStatsPOJO.getGamesPlayed();
+        Assertions.assertEquals(-1, gamesPlayed);
+    }
+
+    @Test
+    void getGamesStartedNotPlayed() {
+        int gamesStarted = notPlayedStatsPOJO.getGamesStarted();
+        Assertions.assertEquals(-1, gamesStarted);
+    }
+
+    @Test
+    void getPlusMinusNotPlayed() {
+        int plusMinus = notPlayedStatsPOJO.getPlusMinus();
+        Assertions.assertEquals(-1, plusMinus);
     }
 }
 

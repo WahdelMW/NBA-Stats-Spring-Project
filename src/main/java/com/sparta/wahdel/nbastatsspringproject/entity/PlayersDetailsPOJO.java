@@ -32,41 +32,15 @@ public class PlayersDetailsPOJO {
         return players;
     }
 
-    public String getFirstName() {
-        return root.league.standard.get(0).getFirstName();
-    }
-
-    public String getLastName() {
-        return root.league.standard.get(0).getLastName();
-    }
-
-    public int getTeamId() {
-        return root.league.standard.get(0).getTeamId();
-    }
-
-    public int getPlayerId() {
-        return root.league.standard.get(0).getPersonId();
-    }
-
-    public int getPlayerCount() {
-        return root.league.standard.size();
-    }
-
-    @Override
-    public String toString() {
-        return "PlayersListPOJO{" +
-                getFirstName() + " " +
-                getLastName() + " " +
-                getPlayerId() + " " +
-                getTeamId() + "}";
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class PlayersPOJO{
         private String firstName;
         private String lastName;
         private int personId;
         private int teamId;
+        private String heightFeet;
+        private String heightInches;
+        private String posFull;
 
         public String getFirstName() {
             return firstName;
@@ -99,6 +73,30 @@ public class PlayersDetailsPOJO {
         public void setTeamId(int teamId) {
             this.teamId = teamId;
         }
+
+        public String getHeightFeet() {
+            return heightFeet;
+        }
+
+        public void setHeightFeet(String heightFeet) {
+            this.heightFeet = heightFeet;
+        }
+
+        public String getHeightInches() {
+            return heightInches;
+        }
+
+        public void setHeightInches(String heightInches) {
+            this.heightInches = heightInches;
+        }
+
+        public String getPosFull() {
+            return posFull;
+        }
+
+        public void setPosFull(String posFull) {
+            this.posFull = posFull;
+        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -110,6 +108,4 @@ public class PlayersDetailsPOJO {
     private static class Root{
         public League league;
     }
-
-
 }
