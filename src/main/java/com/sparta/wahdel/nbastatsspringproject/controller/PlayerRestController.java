@@ -27,12 +27,6 @@ public class PlayerRestController {
         }
     }
 
-    @GetMapping("/rest/players")
-    public Iterable<PlayersEntity> findAll() {
-        return playerService.getAllPlayers();
-    }
-
-    @PostMapping("/rest/players/{id}")
     public String findById(@PathVariable(value = "id") int playerId) {
         PlayersDetailsPOJO.PlayersPOJO player = playersDetailsPOJO.getPlayers().get(playerId);
         String requestBody = "{\n" +
@@ -45,13 +39,13 @@ public class PlayerRestController {
     }
 
     @PostMapping("/rest/addPlayer/{id}")
-    public PlayersEntity newPlayer(@PathVariable(value = "id") int playerId) {
+    public String newPlayer(@PathVariable(value = "id") int playerId) {
         ObjectMapper objectMapper = new ObjectMapper();
-        PlayersEntity player = null;
+        PlayersEntity player;
         try {
             player = objectMapper.readValue(findById(playerId), PlayersEntity.class);
             playerService.savePlayer(player);
-            return player;
+            return "";
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
