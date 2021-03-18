@@ -48,11 +48,4 @@ public class PlayerController {
         }
         return "error";
     }
-
-//    @GetMapping("/teams/{id}")
-//    public String getPlayerOnTeam(@PathVariable(value = "id") int teamId, ModelMap modelMap) {
-//        Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playersDetailsPOJO.getPlayerList();
-//        modelMap.addAttribute("players", players);
-//        return "team";
-//    }
 }

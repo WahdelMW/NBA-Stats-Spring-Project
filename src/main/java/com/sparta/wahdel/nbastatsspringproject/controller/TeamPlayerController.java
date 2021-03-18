@@ -40,20 +40,13 @@ public class TeamPlayerController {
         }
     }
 
-
     @GetMapping("/teams/{id}")
     public String getTeamById(@PathVariable(value = "id") int teamId, ModelMap modelMap) {
         TeamsEntity team = teamService.getTeamById(teamId);
-        try {
-            PlayerPojoRepository playerPojoRepository = new PlayerPojoRepository();
-            Iterable<PlayersDetailsPOJO.PlayersPOJO> players = getPlayersPOJOS(teamId, team);
-            modelMap.addAttribute("team", team);
-            modelMap.addAttribute("players", players);
-            return "team";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "fantasyTeams";
+        Iterable<PlayersDetailsPOJO.PlayersPOJO> players = getPlayersPOJOS(teamId, team);
+        modelMap.addAttribute("team", team);
+        modelMap.addAttribute("players", players);
+        return "team";
     }
 
     private Iterable<PlayersDetailsPOJO.PlayersPOJO> getPlayersPOJOS(int teamId, TeamsEntity team) {
@@ -87,7 +80,7 @@ public class TeamPlayerController {
             Iterable<PlayersDetailsPOJO.PlayersPOJO> players;
             players = playerPojoService.getPlayersFromListOfPlayerIds(Lineup.getStarters());
             modelMap.addAttribute("players", players);
-            return "/fullLineup";
+            return "fullLineup";
         } else {
             Lineup.addToStarters(playerId);
         }

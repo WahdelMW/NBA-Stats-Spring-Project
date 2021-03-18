@@ -16,11 +16,8 @@ public class PlayerPojoService {
     private PlayerPojoRepository playerPojoRepository;
 
     public PlayerPojoService() {
-        try {
-            playerPojoRepository = new PlayerPojoRepository();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        playerPojoRepository = new PlayerPojoRepository();
+
     }
 
     public Iterable<PlayersDetailsPOJO.PlayersPOJO> getAllPlayers() {

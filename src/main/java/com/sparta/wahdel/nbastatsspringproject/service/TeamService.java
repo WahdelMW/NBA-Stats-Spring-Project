@@ -26,4 +26,8 @@ public class TeamService {
     public Iterable<TeamsEntity> getTeamsByIsFantasy(boolean fantasy) {
         return teamRepository.findTeamsEntityByIsFantasy(fantasy);
     }
+
+    public void save(TeamsEntity team) {
+        teamRepository.save(team);
+    }
 }

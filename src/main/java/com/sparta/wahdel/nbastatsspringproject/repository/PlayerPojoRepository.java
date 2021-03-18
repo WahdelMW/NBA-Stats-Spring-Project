@@ -8,8 +8,12 @@ import java.util.*;
 public class PlayerPojoRepository {
     private PlayersDetailsPOJO playersDetailsPOJO;
 
-    public PlayerPojoRepository() throws IOException {
-        this.playersDetailsPOJO = new PlayersDetailsPOJO();
+    public PlayerPojoRepository() {
+        try {
+            this.playersDetailsPOJO = new PlayersDetailsPOJO();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Iterable<PlayersDetailsPOJO.PlayersPOJO> getPlayerList() {
