@@ -18,6 +18,10 @@ public class Lineup {
         return starters;
     }
 
+    public static boolean isFull() {
+        return starters.size() >= 5;
+    }
+
     public void setStarters(HashSet<Integer> starters) {
         this.starters = starters;
     }

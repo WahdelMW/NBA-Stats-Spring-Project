@@ -3,8 +3,7 @@ package com.sparta.wahdel.nbastatsspringproject.repository;
 import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PlayerPojoRepository {
     private PlayersDetailsPOJO playersDetailsPOJO;
@@ -27,10 +26,19 @@ public class PlayerPojoRepository {
         return teamPlayers;
     }
 
-    public Iterable<PlayersDetailsPOJO.PlayersPOJO> getListPlayersFromListOfPlayerIds(List<Integer> playerIds) {
+    public Iterable<PlayersDetailsPOJO.PlayersPOJO> getListPlayersFromListOfPlayerIds(Iterable<Integer> playerIds) {
+        return getPlayersPOJOS(playerIds);
+    }
+
+    private List<PlayersDetailsPOJO.PlayersPOJO> getPlayersPOJOS(Iterable<Integer> playerIds) {
         List<PlayersDetailsPOJO.PlayersPOJO> teamPlayers = new ArrayList<>();
+        List<Integer> players = new ArrayList<>();
+        for (int id:playerIds) {
+            players.add(id);
+        }
+        
         for (PlayersDetailsPOJO.PlayersPOJO player : getPlayerList()) {
-            if (playerIds.contains(player.getPersonId())) {
+            if (players.contains(player.getPersonId())) {
                 teamPlayers.add(player);
             }
         }
