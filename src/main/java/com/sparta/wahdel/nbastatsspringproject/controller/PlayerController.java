@@ -1,7 +1,7 @@
 package com.sparta.wahdel.nbastatsspringproject.controller;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayerStatsPOJO;
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayerStatsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

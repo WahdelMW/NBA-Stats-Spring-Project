@@ -1,6 +1,6 @@
 package com.sparta.wahdel.nbastatsspringproject.controller;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.entity.TeamsEntity;
 import com.sparta.wahdel.nbastatsspringproject.repository.PlayerPojoRepository;
 import com.sparta.wahdel.nbastatsspringproject.service.PlayerService;

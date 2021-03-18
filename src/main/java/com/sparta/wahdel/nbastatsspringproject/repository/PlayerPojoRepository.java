@@ -1,6 +1,6 @@
 package com.sparta.wahdel.nbastatsspringproject.repository;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 
 import java.io.IOException;
 import java.util.ArrayList;

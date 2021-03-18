@@ -23,7 +23,11 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/fantasyTeams}">Your Fantasy Teams</a>
                     </li>
-
+                    <form method="post" th:action="@{/rest/addPlayers/{teamId}(teamId=1)}">
+                        <li>
+                            <button type="submit" th:text="|Add All Players|"/>
+                        </li>
+                    </form>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

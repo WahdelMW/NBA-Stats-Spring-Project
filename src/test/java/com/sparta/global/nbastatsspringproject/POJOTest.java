@@ -1,7 +1,7 @@
 package com.sparta.global.nbastatsspringproject;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayerStatsPOJO;
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersDetailsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayerStatsPOJO;
+import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

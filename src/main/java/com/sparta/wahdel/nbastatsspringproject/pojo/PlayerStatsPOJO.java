@@ -1,4 +1,4 @@
-package com.sparta.wahdel.nbastatsspringproject.entity;
+package com.sparta.wahdel.nbastatsspringproject.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
