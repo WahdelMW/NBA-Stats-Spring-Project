@@ -27,7 +27,7 @@ public class TeamPOJO {
         private boolean isNBAFranchise;
         private boolean isAllStar;
         private String city;
-        private String teamId;
+        private int teamId;
         private String nickname;
 
         public boolean isNBAFranchise() {
@@ -54,11 +54,11 @@ public class TeamPOJO {
             this.city = city;
         }
 
-        public String getTeamId() {
+        public int getTeamId() {
             return teamId;
         }
 
-        public void setTeamId(String teamId) {
+        public void setTeamId(int teamId) {
             this.teamId = teamId;
         }
 
