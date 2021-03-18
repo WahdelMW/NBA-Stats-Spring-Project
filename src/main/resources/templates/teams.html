@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h1>List of all NBA teams</h1>
+<table>
+    <tr>
+        <th>Team Name</th>
+        <th>View Team's Players</th>
+    </tr>
+    <tr th:each="team : ${teams}">
+        <td th:text="|${team.cityName} ${team.teamName}|"></td>
+        <td><a th:href="@{/teams/{teamId}(teamId=${team.teamId})}" th:text="View"></a></td>
+    </tr>
+</table>
+</body>
+</html>

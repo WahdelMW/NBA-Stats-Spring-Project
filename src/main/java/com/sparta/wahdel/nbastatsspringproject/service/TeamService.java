@@ -22,4 +22,8 @@ public class TeamService {
         TeamsEntity team = teamRepository.findById(teamId).orElseThrow(() -> new NullPointerException());
         return team;
     }
+
+    public Iterable<TeamsEntity> getTeamsByIsFantasy(boolean fantasy) {
+        return teamRepository.findTeamsEntityByIsFantasy(fantasy);
+    }
 }

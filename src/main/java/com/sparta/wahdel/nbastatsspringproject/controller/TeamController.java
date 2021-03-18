@@ -29,9 +29,16 @@ public class TeamController {
 
     @GetMapping("/fantasyTeams")
     public String getFantasyTeams(ModelMap modelMap) {
-        Iterable<TeamsEntity> fantasyTeams = teamService.getAllTeams();
+        Iterable<TeamsEntity> fantasyTeams = teamService.getTeamsByIsFantasy(true);
         modelMap.addAttribute("fantasyTeams", fantasyTeams);
         return "fantasyTeams";
+    }
+
+    @GetMapping("/teams")
+    public String getNBATeams(ModelMap modelMap) {
+        Iterable<TeamsEntity> teams = teamService.getTeamsByIsFantasy(false);
+        modelMap.addAttribute("teams", teams);
+        return "teams";
     }
 
     @GetMapping("/teams/{id}")
