@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UsersRestController {
 
-    private UsersService usersService;
+    private final UsersService usersService;
 
     @Autowired
     public UsersRestController(UsersService usersService) {

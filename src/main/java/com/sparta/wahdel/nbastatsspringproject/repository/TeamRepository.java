@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TeamRepository extends CrudRepository<TeamsEntity, Integer> {
 
-    @Query("SELECT t FROM TeamsEntity t WHERE t.fantasy = ?1")
+    @Query("SELECT t FROM TeamsEntity t WHERE t.fantasy = ?1 ORDER BY t.teamName")
     List<TeamsEntity> findTeamsEntityByIsFantasy(boolean fantasy);
 }

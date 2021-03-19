@@ -28,4 +28,8 @@ public class PlayerService {
     public Iterable<Integer> getAllIdsOfPlayersOnTeam(int teamId) {
         return playerRepository.findPlayerIdByTeamId(teamId);
     }
+
+    public long getPlayerCountByTeamId(int teamId) {
+        return playerRepository.getCountOfPlayersByTeamId(teamId);
+    }
 }

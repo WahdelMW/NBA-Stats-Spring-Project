@@ -9,7 +9,7 @@
 <body>
 <div th:insert="fragments/header.html"></div>
 <h1 th:text="|${team.cityName} ${team.teamName}|"></h1>
-<table>
+<table class="table table-hover">
     <tr>
         <th th:unless="${team.fantasy}">Add to fantasy team</th>
         <th>First Name</th>
@@ -18,16 +18,17 @@
         <th>Season Stats</th>
     </tr>
     <tr th:each="player : ${players}">
-            <form method="post" th:action="@{/rest/addPlayer/{personId}(personId=${player.personId})}">
-                <td th:unless="${team.fantasy}">
-                    <button type="submit" th:text="Add"/>
-                </td>
-            </form>
-            <td th:text="${player.firstName}"></td>
-            <td th:text="${player.lastName}"></td>
-            <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
-            <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
+        <form method="post" th:action="@{/addPlayer/{personId}(personId=${player.personId})}">
+            <td th:unless="${team.fantasy}">
+                <button type="submit" th:text="Add"/>
+            </td>
+        </form>
+        <td th:text="${player.firstName}"></td>
+        <td th:text="${player.lastName}"></td>
+        <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
+        <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
     </tr>
 </table>
+<div th:insert="fragments/footer.html"></div>
 </body>
 </html>

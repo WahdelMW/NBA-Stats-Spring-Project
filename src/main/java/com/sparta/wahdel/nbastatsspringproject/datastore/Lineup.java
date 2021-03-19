@@ -1,7 +1,6 @@
 package com.sparta.wahdel.nbastatsspringproject.datastore;
 
 import java.util.HashSet;
-import java.util.List;
 
 public class Lineup {
 
@@ -34,6 +33,10 @@ public class Lineup {
         if (starters.contains(playerId)) {
             starters.remove(playerId);
         }
+    }
+
+    public boolean isStarterEmpty() {
+        return starters.isEmpty();
     }
 
     public static void clear() {

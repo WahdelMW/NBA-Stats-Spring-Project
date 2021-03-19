@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Lineup</title>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<h1 th:if="${exceedMaxSize}" th:text="|Adding these player will exceed the team size limit|"></h1>
+<div>
+    <p th:text="|These are your currently selected players|"/>
+    <table class="table table-hover">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        <tr th:each="team : ${teams}">
+            <form method="post" th:action="@{/addPlayers/{teamId}(teamId=${team.teamId})}">
+                <td>
+                    <button th:text="|Add players to|"/>
+                </td>
+                <td th:text="|${team.cityName} ${team.teamName}|"></td>
+            </form>
+        </tr>
+    </table>
+    <table class="table table-hover">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Height</th>
+            <th>Season Stats</th>
+        </tr>
+        <tr th:each="player : ${players}">
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.lastName}"></td>
+            <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
+        </tr>
+    </table>
+</div>
+<div th:insert="fragments/footer.html"></div>
+</body>
+</html>
