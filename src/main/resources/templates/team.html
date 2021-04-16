@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Team</title>
-    <link rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/5.0.0-beta2/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/../webjars/bootstrap/5.0.0-beta2/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -14,6 +14,7 @@
         <th th:unless="${team.fantasy}">Add to fantasy team</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Position</th>
         <th>Height</th>
         <th>Season Stats</th>
     </tr>
@@ -25,6 +26,7 @@
         </form>
         <td th:text="${player.firstName}"></td>
         <td th:text="${player.lastName}"></td>
+        <td th:text="${player.pos}"></td>
         <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
         <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
     </tr>

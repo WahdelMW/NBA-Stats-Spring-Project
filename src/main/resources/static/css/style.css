@@ -2,7 +2,7 @@ body{
     background-color: white;
     align-content: center;
     color: black;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
 }
 
 .footer {
@@ -13,9 +13,4 @@ body{
     background-color: #ae0000;
     color: white;
     text-align: center;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }

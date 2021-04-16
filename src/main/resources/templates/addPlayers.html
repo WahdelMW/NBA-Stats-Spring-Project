@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Full Lineup</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/../webjars/bootstrap/5.0.0-beta2/css/bootstrap.min.css}">
+
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
-<h1 th:if="${exceedMaxSize}" th:text="|Adding these player will exceed the team size limit|"></h1>
+<h1 class="text-danger" th:if="${exceedMaxSize}" th:text="|Adding this many players will exceed chosen teams capacity!|"></h1>
 <div>
-    <p th:text="|These are your currently selected players|"/>
+    <p th:text="|These are the teams you can add players to|"/>
     <table class="table table-hover">
         <tr>
+            <th>Click to players add to this Team</th>
             <th>Team Name</th>
         </tr>
         <tr th:each="team : ${teams}">
@@ -22,6 +25,8 @@
             </form>
         </tr>
     </table>
+    <br/>
+    <p th:text="|These are your currently selected players|"/>
     <table class="table table-hover">
         <tr>
             <th>First Name</th>

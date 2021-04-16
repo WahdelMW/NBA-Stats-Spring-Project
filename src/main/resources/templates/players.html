@@ -9,20 +9,22 @@
 <h1>List of all current NBA players</h1>
 <table class="table table-hover">
     <tr>
-        <th>Person ID</th>
+        <th>Add Player to Lineup</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Position</th>
         <th>Height</th>
         <th>Season Stats</th>
     </tr>
     <tr th:each="player : ${players}">
         <form method="post" th:action="@{/addPlayer/{personId}(personId=${player.personId})}">
-            <td>
+            <td class="align-content-center">
                 <button type="submit" th:text="Add"/>
             </td>
         </form>
         <td th:text="${player.firstName}"></td>
         <td th:text="${player.lastName}"></td>
+        <td th:text="${player.pos}"></td>
         <td th:text="|${player.heightFeet}'' ${player.heightInches}|"></td>
         <td><a th:href="@{/players/{personId}(personId=${player.personId})}" th:text="View"></a></td>
     </tr>

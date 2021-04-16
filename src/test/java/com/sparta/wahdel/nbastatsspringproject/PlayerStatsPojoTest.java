@@ -1,4 +1,4 @@
-package com.sparta.global.nbastatsspringproject;
+package com.sparta.wahdel.nbastatsspringproject;
 
 import com.sparta.wahdel.nbastatsspringproject.pojo.PlayerStatsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;

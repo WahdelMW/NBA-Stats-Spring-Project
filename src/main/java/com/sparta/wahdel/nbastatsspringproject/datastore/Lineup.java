@@ -18,24 +18,26 @@ public class Lineup {
     }
 
     public static boolean isFull() {
-        return starters.size() >= 5;
-    }
-
-    public void setStarters(HashSet<Integer> starters) {
-        this.starters = starters;
+        return getNumberOfStarters() >= 5;
     }
 
     public static void addToStarters(int playerId) {
-        starters.add(playerId);
+        if(!isFull()) {
+            starters.add(playerId);
+        }
     }
 
-    public void removeFromStarters(int playerId) {
+    public static void removeFromStarters(int playerId) {
         if (starters.contains(playerId)) {
             starters.remove(playerId);
         }
     }
 
-    public boolean isStarterEmpty() {
+    public static int getNumberOfStarters() {
+        return starters.size();
+    }
+
+    public static boolean isStarterEmpty() {
         return starters.isEmpty();
     }
 

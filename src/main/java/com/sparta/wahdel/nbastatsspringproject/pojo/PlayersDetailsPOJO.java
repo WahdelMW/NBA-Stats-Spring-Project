@@ -40,7 +40,7 @@ public class PlayersDetailsPOJO {
         private int teamId;
         private String heightFeet;
         private String heightInches;
-        private String posFull;
+        private String pos;
 
         public String getFirstName() {
             return firstName;
@@ -90,12 +90,12 @@ public class PlayersDetailsPOJO {
             this.heightInches = heightInches;
         }
 
-        public String getPosFull() {
-            return posFull;
+        public String getPos() {
+            return pos;
         }
 
-        public void setPosFull(String posFull) {
-            this.posFull = posFull;
+        public void setPos(String pos) {
+            this.pos = pos;
         }
     }
 

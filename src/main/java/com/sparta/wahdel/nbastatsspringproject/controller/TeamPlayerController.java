@@ -72,10 +72,15 @@ public class TeamPlayerController {
 
     @GetMapping("/verifyAddedPlayers")
     private String verifyAddedPlayers(ModelMap modelMap) {
+        if (Lineup.isStarterEmpty()) {
+            return "redirect:/players";
+        }
         Iterable<PlayersDetailsPOJO.PlayersPOJO> players;
         players = playerPojoService.getPlayersFromListOfPlayerIds(Lineup.getStarters());
+        TeamsEntity selectedTeam = teamService.getTeamById(0);
         modelMap.addAttribute("players", players);
         modelMap.addAttribute("exceedMaxSize", false);
+        modelMap.addAttribute("teamId", 0);
         modelMap.addAttribute("teams", getFantasyTeams());
         return "addPlayers";
     }
@@ -84,25 +89,39 @@ public class TeamPlayerController {
     public String newPlayer(@PathVariable(value = "teamId") int teamId, ModelMap modelMap) {
         ObjectMapper objectMapper = new ObjectMapper();
         PlayersEntity player;
-        if(playerService.getPlayerCountByTeamId(teamId) + Lineup.getStarters().size() > 13)
-        {
+        Iterable<PlayersDetailsPOJO.PlayersPOJO> players = playerPojoService.getPlayersFromListOfPlayerIds(Lineup.getStarters());
+        TeamsEntity selectedTeam = teamService.getTeamById(0);
+        if (playerService.getPlayerCountByTeamId(teamId) + Lineup.getStarters().size() > 13) {
             modelMap.addAttribute("exceedMaxSize", true);
+            modelMap.addAttribute("players", players);
+            modelMap.addAttribute("teamId", teamId);
             modelMap.addAttribute("teams", getFantasyTeams());
-            return "redirect:/addPlayers";
+            return "addPlayers";
         }
         try {
             for (int playerId : Lineup.getStarters()) {
-                player = objectMapper.readValue(createPlayerRequestBody(playerId, teamId), PlayersEntity.class);
-                playerService.savePlayer(player);
+                if (!onTeam(playerId, teamId)) {
+                    player = objectMapper.readValue(createPlayerRequestBody(playerId, teamId), PlayersEntity.class);
+                    playerService.savePlayer(player);
+                }
             }
             Lineup.clear();
-            TeamsEntity team = teamService.getTeamById(teamId);
-            modelMap.addAttribute("team", team);
+            modelMap.addAttribute("team", selectedTeam);
             return "playersAddedSuccess";
         } catch (IOException e) {
             e.printStackTrace();
         }
         return "playersAddedError";
+    }
+
+    private boolean onTeam(int playerId, int teamId) {
+        Iterable<Integer> players = playerService.getAllIdsOfPlayersOnTeam(teamId);
+        for (int id : players) {
+            if (id == playerId) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Iterable<TeamsEntity> getFantasyTeams() {

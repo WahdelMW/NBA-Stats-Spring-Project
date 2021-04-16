@@ -10,10 +10,9 @@ import java.util.List;
 @Repository
 public interface PlayerRepository extends CrudRepository<PlayersEntity, Integer> {
 
-    @Query("SELECT p.playerId FROM PlayersEntity p WHERE p.teamId = ?1")
+    @Query("SELECT p.playerId FROM PlayersEntity p WHERE p.teamId = ?1 ORDER BY p.lastName")
     List<Integer> findPlayerIdByTeamId(int teamId);
 
     @Query("SELECT COUNT(p) FROM PlayersEntity p WHERE p.teamId = ?1")
     Long getCountOfPlayersByTeamId(int teamId);
-
 }

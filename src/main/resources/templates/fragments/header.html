@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -30,9 +30,15 @@
                         <a class="nav-link" th:href="@{/fantasyTeams}">Your Fantasy Teams</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="post" th:action="@{/logout}">
-                    <button class="btn btn-outline-success" type="submit">Logout</button>
-                </form>
+                <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
+                                <form th:action="@{/logout}" method="post">
+                                    <input class="btn" id="primaryBtn" type="submit" value="Logout"/>
+                                </form>
+                            </span>
+                <div sec:authorize="!isAuthenticated()">
+                    <form th:action="@{/login}" method="GET">
+                        <input class="btn" id="primaryBtn" type="submit" value="Login/Create Account"/>
+                    </form>
             </div>
         </div>
     </nav>
