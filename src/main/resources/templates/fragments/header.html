@@ -32,12 +32,12 @@
                 </ul>
                 <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
                     <form th:action="@{/logout}" method="post">
-                        <input class="btn" id="primaryBtn" type="submit" value="Logout"/>
+                        <input class="btn" id="logoutBtn" type="submit" value="Logout"/>
                     </form>
                 </span>
                 <div sec:authorize="!isAuthenticated()">
                     <form th:action="@{/login}" method="GET">
-                        <input class="btn" id="primaryBtn" type="submit" value="Login/Create Account"/>
+                        <input class="btn" id="loginBtn" type="submit" value="Login/Create Account"/>
                     </form>
                 </div>
             </div>

@@ -10,7 +10,7 @@
 <div th:insert="fragments/header.html"></div>
 <h1 class="text-danger" th:if="${exceedMaxSize}" th:text="|Adding this many players will exceed chosen teams capacity!|"></h1>
 <div>
-    <p th:text="|These are the teams you can add players to|"/>
+    <p th:text="|These are the teams you can add players to|"></p>
     <table class="table table-hover">
         <tr>
             <th>Click to players add to this Team</th>
@@ -19,14 +19,14 @@
         <tr th:each="team : ${teams}">
             <form method="post" th:action="@{/addPlayers/{teamId}(teamId=${team.teamId})}">
                 <td>
-                    <button th:text="|Add players to|"/>
+                    <button th:text="|Add players to|"></button>
                 </td>
                 <td th:text="|${team.cityName} ${team.teamName}|"></td>
             </form>
         </tr>
     </table>
     <br/>
-    <p th:text="|These are your currently selected players|"/>
+    <p th:text="|These are your currently selected players|"></p>
     <table class="table table-hover">
         <tr>
             <th>First Name</th>

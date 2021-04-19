@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TeamPojoService {
-    private TeamPojoRepository teamPojoRepository;
+    private final TeamPojoRepository teamPojoRepository;
 
     public TeamPojoService() {
         this.teamPojoRepository = new TeamPojoRepository();

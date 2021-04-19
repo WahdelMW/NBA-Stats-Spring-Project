@@ -21,7 +21,7 @@
     <tr th:each="player : ${players}">
         <form method="post" th:action="@{/addPlayer/{personId}(personId=${player.personId})}">
             <td th:unless="${team.fantasy}">
-                <button type="submit" th:text="Add"/>
+                <button type="submit" th:text="Add"></button>
             </td>
         </form>
         <td th:text="${player.firstName}"></td>

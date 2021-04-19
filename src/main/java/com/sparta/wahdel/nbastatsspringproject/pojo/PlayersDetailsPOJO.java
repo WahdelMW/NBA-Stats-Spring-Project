@@ -10,12 +10,11 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayersDetailsPOJO {
 
-    private Root root;
-    private List<PlayersPOJO> players;
+    private final List<PlayersPOJO> players;
 
     public PlayersDetailsPOJO() throws IOException {
         ObjectMapper om = new ObjectMapper();
-        root = om.readValue(new URL("http://data.nba.net/data/10s/prod/v1/2020/players.json"), Root.class);
+        Root root = om.readValue(new URL("http://data.nba.net/data/10s/prod/v1/2020/players.json"), Root.class);
         players = root.league.standard;
     }
 

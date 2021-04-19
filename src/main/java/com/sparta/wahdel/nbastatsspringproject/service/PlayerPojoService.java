@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlayerPojoService {
 
-    private PlayerPojoRepository playerPojoRepository;
+    private final PlayerPojoRepository playerPojoRepository;
 
     public PlayerPojoService() {
         playerPojoRepository = new PlayerPojoRepository();

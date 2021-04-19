@@ -10,7 +10,7 @@ import java.net.URL;
 public class PlayerStatsPOJO {
 
     private final Root root;
-    private Latest playerStats;
+    private final Latest playerStats;
 
     public PlayerStatsPOJO(int playerId) throws IOException {
         ObjectMapper om = new ObjectMapper();
