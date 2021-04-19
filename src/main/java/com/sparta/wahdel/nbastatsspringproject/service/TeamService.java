@@ -27,16 +27,27 @@ public class TeamService {
         return teamRepository.findTeamsEntityByIsFantasy(fantasy);
     }
 
-    public void save(TeamsEntity team) {
+    private void save(TeamsEntity team) {
         teamRepository.save(team);
     }
 
-    public void addFantasyTeam(String city, String teamName, int userId) {
+    public void saveTeam(String city, String teamName, int userId) {
+        TeamsEntity newTeam = createTeam(city, teamName, userId);
+        newTeam.setFantasy(true);
+        save(newTeam);
+    }
+
+    public void saveTeam(int teamId, String city, String teamName) {
+        TeamsEntity newTeam = createTeam(city, teamName, 1);
+        newTeam.setTeamId(teamId);
+        save(newTeam);
+    }
+
+    private TeamsEntity createTeam(String city, String teamName, int userId) {
         TeamsEntity newTeam = new TeamsEntity();
         newTeam.setCityName(city);
         newTeam.setTeamName(teamName);
-        newTeam.setFantasy(true);
         newTeam.setUserId(userId);
-        teamRepository.save(newTeam);
+        return newTeam;
     }
 }

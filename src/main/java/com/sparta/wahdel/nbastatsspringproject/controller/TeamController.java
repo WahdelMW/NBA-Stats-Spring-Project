@@ -1,7 +1,5 @@
 package com.sparta.wahdel.nbastatsspringproject.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.wahdel.nbastatsspringproject.entity.TeamsEntity;
 import com.sparta.wahdel.nbastatsspringproject.pojo.TeamPOJO;
 import com.sparta.wahdel.nbastatsspringproject.service.TeamPojoService;
@@ -41,7 +39,7 @@ public class TeamController {
                                     @RequestParam String teamName) {
         //Todo: get current users Id, implement security service
         int userId = 1;
-        teamService.addFantasyTeam(cityName, teamName, userId);
+        teamService.saveTeam(cityName, teamName, userId);
         return "redirect:/fantasyTeams";
     }
 
@@ -57,31 +55,10 @@ public class TeamController {
 
     @PostMapping("/teams")
     public String postNBATeams() {
-        ObjectMapper objectMapper = new ObjectMapper();
         TeamsEntity nbaTeam = new TeamsEntity();
         for (TeamPOJO.Standard team : teamPojoService.getNBATeams()) {
-//            try {
-//                nbaTeam = objectMapper.readValue(createTeamRequestBody(team), TeamsEntity.class);
-//                teamService.save(nbaTeam);
-//            } catch (JsonProcessingException e) {
-//                e.printStackTrace();
-//            }
-            nbaTeam.setTeamId(team.getTeamId());
-            nbaTeam.setTeamName(team.getNickname());
-            nbaTeam.setCityName(team.getCity());
-            nbaTeam.setFantasy(false);
-            nbaTeam.setUserId(1);
-            teamService.save(nbaTeam);
+            teamService.saveTeam(team.getTeamId(), team.getCity(), team.getNickname());
         }
         return "redirect:/teams";
-    }
-
-    public String createTeamRequestBody(TeamPOJO.Standard team) {
-        return "{" +
-                "\n\"teamId\" : \"" + team.getTeamId() + "\"," +
-                "\n\"cityName\" : \"" + team.getCity() + "\"," +
-                "\n\"teamName\" : \"" + team.getNickname() + "\"," +
-                "\n\"fantasy\" : \"false\"" +
-                "\n}";
     }
 }

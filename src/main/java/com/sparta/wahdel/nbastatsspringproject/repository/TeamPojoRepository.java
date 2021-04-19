@@ -21,10 +21,11 @@ public class TeamPojoRepository {
         return teamPOJO.getAllTeams();
     }
 
+    //Todo: isNBAFranchise not read correctly, should not always be set to false
     public Iterable<TeamPOJO.Standard> getNBATeams() {
         List<TeamPOJO.Standard> nbaTeams = new ArrayList<>();
         for (TeamPOJO.Standard team : getAllTeams()) {
-            if (!team.isAllStar() /*&& team.isNBAFranchise()*/) {
+            if (!team.isAllStar()) {
                 System.out.println("Name: " + team.getNickname());
                 System.out.println("Franchise: " + team.isNBAFranchise());
                 nbaTeams.add(team);
