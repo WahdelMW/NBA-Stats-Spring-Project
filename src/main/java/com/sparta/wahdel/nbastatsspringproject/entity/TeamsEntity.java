@@ -12,6 +12,7 @@ public class TeamsEntity {
     private boolean fantasy;
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "team_id")
     public int getTeamId() {
         return teamId;
@@ -42,7 +43,7 @@ public class TeamsEntity {
     }
 
     @Basic
-    @Column(name = "isFantasy")
+    @Column(name = "is_fantasy")
     public boolean isFantasy() {
         return fantasy;
     }

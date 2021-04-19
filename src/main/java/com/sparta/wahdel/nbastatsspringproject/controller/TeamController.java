@@ -11,6 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class TeamController {
@@ -31,10 +36,20 @@ public class TeamController {
         return "fantasyTeams";
     }
 
+    @PostMapping("/addFantasyTeam")
+    public String addNewFantasyTeam(@RequestParam String cityName,
+                                    @RequestParam String teamName) {
+        teamService.addFantasyTeam(cityName, teamName);
+        return "redirect:/fantasyTeams";
+    }
+
     @GetMapping("/teams")
     public String getNBATeams(ModelMap modelMap) {
         Iterable<TeamsEntity> teams = teamService.getTeamsByIsFantasy(false);
-        modelMap.addAttribute("teams", teams);
+        List<TeamsEntity> teamList =
+                StreamSupport.stream(teams.spliterator(), false)
+                        .collect(Collectors.toList());
+        modelMap.addAttribute("teams", teamList);
         return "teams";
     }
 
@@ -42,6 +57,7 @@ public class TeamController {
     public String postNBATeams() {
         ObjectMapper objectMapper = new ObjectMapper();
         TeamsEntity nbaTeam;
+        System.out.println("Button Pressed");
         for (TeamPOJO.Standard team : teamPojoService.getNBATeams()) {
             try {
                 nbaTeam = objectMapper.readValue(createTeamRequestBody(team), TeamsEntity.class);
@@ -50,7 +66,7 @@ public class TeamController {
                 e.printStackTrace();
             }
         }
-        return "teams";
+        return "redirect:/teams";
     }
 
     public String createTeamRequestBody(TeamPOJO.Standard team) {

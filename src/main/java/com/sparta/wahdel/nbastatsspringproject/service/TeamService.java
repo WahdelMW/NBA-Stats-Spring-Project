@@ -30,4 +30,12 @@ public class TeamService {
     public void save(TeamsEntity team) {
         teamRepository.save(team);
     }
+
+    public void addFantasyTeam(String city, String teamName) {
+        TeamsEntity newTeam = new TeamsEntity();
+        newTeam.setCityName(city);
+        newTeam.setTeamName(teamName);
+        newTeam.setFantasy(true);
+        teamRepository.save(newTeam);
+    }
 }

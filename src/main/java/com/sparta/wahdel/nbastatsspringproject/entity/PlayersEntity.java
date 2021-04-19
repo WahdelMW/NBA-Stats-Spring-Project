@@ -14,6 +14,7 @@ public class PlayersEntity {
     private String lastName;
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "player_id")
     public int getPlayerId() {
         return playerId;
