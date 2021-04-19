@@ -7,6 +7,7 @@ import java.util.Objects;
 @Table(name = "teams", schema = "nba_stats")
 public class TeamsEntity {
     private int teamId;
+    private int userId;
     private String cityName;
     private String teamName;
     private boolean fantasy;
@@ -20,6 +21,16 @@ public class TeamsEntity {
 
     public void setTeamId(int teamId) {
         this.teamId = teamId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic

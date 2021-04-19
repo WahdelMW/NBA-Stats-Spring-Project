@@ -39,7 +39,9 @@ public class TeamController {
     @PostMapping("/addFantasyTeam")
     public String addNewFantasyTeam(@RequestParam String cityName,
                                     @RequestParam String teamName) {
-        teamService.addFantasyTeam(cityName, teamName);
+        //Todo: get current users Id, implement security service
+        int userId = 1;
+        teamService.addFantasyTeam(cityName, teamName, userId);
         return "redirect:/fantasyTeams";
     }
 
@@ -56,15 +58,20 @@ public class TeamController {
     @PostMapping("/teams")
     public String postNBATeams() {
         ObjectMapper objectMapper = new ObjectMapper();
-        TeamsEntity nbaTeam;
-        System.out.println("Button Pressed");
+        TeamsEntity nbaTeam = new TeamsEntity();
         for (TeamPOJO.Standard team : teamPojoService.getNBATeams()) {
-            try {
-                nbaTeam = objectMapper.readValue(createTeamRequestBody(team), TeamsEntity.class);
-                teamService.save(nbaTeam);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                nbaTeam = objectMapper.readValue(createTeamRequestBody(team), TeamsEntity.class);
+//                teamService.save(nbaTeam);
+//            } catch (JsonProcessingException e) {
+//                e.printStackTrace();
+//            }
+            nbaTeam.setTeamId(team.getTeamId());
+            nbaTeam.setTeamName(team.getNickname());
+            nbaTeam.setCityName(team.getCity());
+            nbaTeam.setFantasy(false);
+            nbaTeam.setUserId(1);
+            teamService.save(nbaTeam);
         }
         return "redirect:/teams";
     }

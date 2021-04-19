@@ -31,11 +31,12 @@ public class TeamService {
         teamRepository.save(team);
     }
 
-    public void addFantasyTeam(String city, String teamName) {
+    public void addFantasyTeam(String city, String teamName, int userId) {
         TeamsEntity newTeam = new TeamsEntity();
         newTeam.setCityName(city);
         newTeam.setTeamName(teamName);
         newTeam.setFantasy(true);
+        newTeam.setUserId(userId);
         teamRepository.save(newTeam);
     }
 }

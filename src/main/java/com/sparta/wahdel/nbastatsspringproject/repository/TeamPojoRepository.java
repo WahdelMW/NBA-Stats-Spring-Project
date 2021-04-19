@@ -24,7 +24,9 @@ public class TeamPojoRepository {
     public Iterable<TeamPOJO.Standard> getNBATeams() {
         List<TeamPOJO.Standard> nbaTeams = new ArrayList<>();
         for (TeamPOJO.Standard team : getAllTeams()) {
-            if (!team.isAllStar()) {
+            if (!team.isAllStar() /*&& team.isNBAFranchise()*/) {
+                System.out.println("Name: " + team.getNickname());
+                System.out.println("Franchise: " + team.isNBAFranchise());
                 nbaTeams.add(team);
             }
         }
