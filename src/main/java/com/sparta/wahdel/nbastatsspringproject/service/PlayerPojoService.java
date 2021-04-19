@@ -1,14 +1,8 @@
 package com.sparta.wahdel.nbastatsspringproject.service;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.PlayersEntity;
 import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.repository.PlayerPojoRepository;
-import com.sparta.wahdel.nbastatsspringproject.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
 
 @Service
 public class PlayerPojoService {

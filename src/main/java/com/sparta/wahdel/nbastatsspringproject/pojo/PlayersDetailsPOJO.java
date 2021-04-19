@@ -1,7 +1,6 @@
 package com.sparta.wahdel.nbastatsspringproject.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
-import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 
 import java.io.IOException;
 import java.net.URL;

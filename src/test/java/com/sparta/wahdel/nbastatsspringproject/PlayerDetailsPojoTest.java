@@ -1,11 +1,9 @@
 package com.sparta.wahdel.nbastatsspringproject;
 
-import com.sparta.wahdel.nbastatsspringproject.pojo.PlayerStatsPOJO;
 import com.sparta.wahdel.nbastatsspringproject.pojo.PlayersDetailsPOJO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
