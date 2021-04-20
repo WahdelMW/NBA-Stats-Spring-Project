@@ -3,23 +3,41 @@ package com.sparta.wahdel.nbastatsspringproject.utils;
 public class InputValidator {
 
     public static boolean isValidUsername(String username) {
-        return username.length() >= 5 && !containsSpecialChar(username) && !containsWhiteSpace(username);
+        return username.length() >= 5 &&
+                containsLetter(username) &&
+                !containsSpecialChar(username) &&
+                !containsWhiteSpace(username);
     }
 
     public static boolean isValidPassword(String password) {
-        return password.length() >= 8 && containsSpecialChar(password) && !containsWhiteSpace(password);
+        boolean uc = containsUppercase(password);
+        boolean lc = containsLowerCase(password);
+        boolean num = containsNumber(password);
+        boolean sc = containsSpecialChar(password);
+        boolean ws = !containsWhiteSpace(password);
+
+        return password.length() >= 8 &&
+                containsUppercase(password) &&
+                containsLowerCase(password) &&
+                containsNumber(password) &&
+                containsSpecialChar(password) &&
+                !containsWhiteSpace(password);
     }
 
-    private static boolean isLetter(char character) {
-        return Character.isLetter(character);
+    private static boolean containsLetter(String input) {
+        return containsLowerCase(input) || containsUppercase(input);
     }
 
-    private static boolean isDigit(char character) {
-        return Character.isDigit(character);
+    private static boolean containsUppercase(String input) {
+        return input.matches(".*[A-Z].*");
+    }
+
+    private static boolean containsLowerCase(String input) {
+        return input.matches(".*[a-z].*");
     }
 
     private static boolean containsNumber(String input) {
-        return input.matches(".*\\d.*");
+        return input.matches(".*[0-9].*");
     }
 
     private static boolean containsSpecialChar(String input) {

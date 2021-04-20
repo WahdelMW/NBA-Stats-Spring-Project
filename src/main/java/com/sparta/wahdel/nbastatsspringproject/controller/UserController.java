@@ -29,7 +29,7 @@ public class UserController {
                           @RequestParam String confirmPassword,
                           @RequestParam String role) {
         if (usersService.getUserByUsername(username).isEmpty()) {
-            if (InputValidator.isValidUsername(username)) {
+            if (InputValidator.isValidUsername(username) && InputValidator.isValidPassword(password)) {
                 if (confirmPassword.equals(password)) {
                     usersService.saveUser(username, password, role);
                     return "index";
