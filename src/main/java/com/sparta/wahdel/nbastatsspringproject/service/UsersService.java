@@ -4,6 +4,8 @@ import com.sparta.wahdel.nbastatsspringproject.entity.UsersEntity;
 import com.sparta.wahdel.nbastatsspringproject.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UsersService {
 
@@ -30,4 +32,7 @@ public class UsersService {
         save(newUser);
     }
 
+    public Optional<UsersEntity> getUserByUsername(String username) {
+        return usersRepository.getUserByUsername(username);
+    }
 }
