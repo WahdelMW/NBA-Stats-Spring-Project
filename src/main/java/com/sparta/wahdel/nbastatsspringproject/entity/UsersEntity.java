@@ -1,6 +1,6 @@
 package com.sparta.wahdel.nbastatsspringproject.entity;
 
-import com.sparta.wahdel.nbastatsspringproject.service.PasswordCreator;
+import com.sparta.wahdel.nbastatsspringproject.security.PasswordEncryptor;
 
 
 import javax.persistence.*;
@@ -43,7 +43,7 @@ public class UsersEntity {
     }
 
     public void setPassword(String password) {
-        this.password = PasswordCreator.encode(password);
+        this.password = PasswordEncryptor.encode(password);
     }
 
     @Basic
