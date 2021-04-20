@@ -18,14 +18,14 @@ public class UsersRestController {
         this.usersService = usersService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/rest/users")
     public Iterable<UsersEntity> findAll() {
         return usersService.getAllUsers();
     }
 
-    @PostMapping("/users")
+    @PostMapping("/rest/users")
     public UsersEntity newUser(@RequestBody UsersEntity usersEntity) {
-        usersService.saveUser(usersEntity);
+        usersService.save(usersEntity);
         return usersEntity;
     }
 }

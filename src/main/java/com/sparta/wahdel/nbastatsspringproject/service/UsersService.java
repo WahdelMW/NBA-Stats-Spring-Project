@@ -17,7 +17,17 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
-    public void saveUser(UsersEntity usersEntity) {
+    public void save(UsersEntity usersEntity) {
         usersRepository.save(usersEntity);
     }
+
+    public void saveUser(String username, String password, String role) {
+        UsersEntity newUser = new UsersEntity();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setRole(role);
+        newUser.setEnabled((byte) 1);
+        save(newUser);
+    }
+
 }

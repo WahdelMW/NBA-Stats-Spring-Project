@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Account</title>
+</head>
+<body>
+<div class="text-center">
+    <form th:method="post" th:action="@{/createAccount}">
+        <div class="modal-body bg-dark text-white">
+            <table class="w-100">
+                <tr>
+                    <td>Username</td>
+                    <td>
+                        <div class="col-md-3">
+                            <input type="text" name="username" class="form-control" autofocus="autofocus" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <div class="col-md-3">
+                            <input type="text" name="password" class="form-control" autofocus="autofocus" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td>
+                        <div class="col-md-3">
+                            <input type="text" name="confirmPassword" class="form-control" autofocus="autofocus" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>
+                        <div class="col-md-3">
+                            <select style="text-align-last: center" class="form-control" name="role" id="role" required>
+                                <option value=""> Select Role </option>
+                                <option th:value="ROLE_ADMIN" th:text="Admin"></option>
+                                <option th:value="ROLE_User" th:text="User"></option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer bg-dark text-center">
+            <button class="btn fw-bold text-white" data-bs-toggle="modal" type="submit">Create New Fantasy Team</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
