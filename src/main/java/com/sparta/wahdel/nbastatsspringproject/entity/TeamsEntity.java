@@ -1,5 +1,7 @@
 package com.sparta.wahdel.nbastatsspringproject.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,7 +15,8 @@ public class TeamsEntity {
     private boolean fantasy;
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(generator="myGenerator")
+    @GenericGenerator(name="myGenerator", strategy="com.sparta.wahdel.nbastatsspringproject.utils.IDGenerator")
     @Column(name = "team_id")
     public int getTeamId() {
         return teamId;
