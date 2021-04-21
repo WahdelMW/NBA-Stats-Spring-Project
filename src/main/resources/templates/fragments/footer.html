@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Footer</title>
@@ -10,12 +10,16 @@
 <body>
 <footer class="footer">
     <div class="container">
+        <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
         <form th:action="@{/verifyAddedPlayers}">
             <button type="submit" th:text="|View Current Lineup|"></button>
         </form>
+        </span>
         <p class="text-center">Stats provided by: data.nba.net</p>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 </body>
 </html>
