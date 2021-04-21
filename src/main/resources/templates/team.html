@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Team</title>
@@ -11,7 +11,9 @@
 <h1 th:text="|${team.cityName} ${team.teamName}|"></h1>
 <table class="table table-hover">
     <tr>
+        <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
         <th th:unless="${team.fantasy}">Add to fantasy team</th>
+        </span>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Position</th>
@@ -19,11 +21,13 @@
         <th>Season Stats</th>
     </tr>
     <tr th:each="player : ${players}">
+        <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
         <form method="post" th:action="@{/addPlayer/{personId}(personId=${player.personId})}">
             <td th:unless="${team.fantasy}">
                 <button type="submit" th:text="Add"></button>
             </td>
         </form>
+        </span>
         <td th:text="${player.firstName}"></td>
         <td th:text="${player.lastName}"></td>
         <td th:text="${player.pos}"></td>
