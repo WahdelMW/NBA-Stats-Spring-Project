@@ -32,6 +32,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationManager();
     }
 
+    @Autowired
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()

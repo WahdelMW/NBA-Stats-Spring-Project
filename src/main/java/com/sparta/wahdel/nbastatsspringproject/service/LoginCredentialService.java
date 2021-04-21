@@ -9,8 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -33,11 +34,13 @@ public class LoginCredentialService implements UserDetailsService {
     }
 
     @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String email) {
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) {
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
-        UsersEntity user = getCurrentUser(email);
+        UsersEntity user = getCurrentUser(username);
         grantedAuthoritySet.add(new SimpleGrantedAuthority(user.getRole()));
-        return new User(user.getUsername(), user.getPassword(), grantedAuthoritySet);
+        //Todo: Find why user.getPassword() returns hash of already hashed password.
+        String password = usersRepository.getPasswordByUsername(username);
+        return new User(user.getUsername(), password, grantedAuthoritySet);
     }
 }
