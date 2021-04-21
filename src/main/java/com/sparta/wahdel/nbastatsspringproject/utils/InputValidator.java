@@ -3,19 +3,13 @@ package com.sparta.wahdel.nbastatsspringproject.utils;
 public class InputValidator {
 
     public static boolean isValidUsername(String username) {
-        return username.length() >= 5 &&
+        return username.length() >= 4 &&
                 containsLetter(username) &&
                 !containsSpecialChar(username) &&
                 !containsWhiteSpace(username);
     }
 
     public static boolean isValidPassword(String password) {
-        boolean uc = containsUppercase(password);
-        boolean lc = containsLowerCase(password);
-        boolean num = containsNumber(password);
-        boolean sc = containsSpecialChar(password);
-        boolean ws = !containsWhiteSpace(password);
-
         return password.length() >= 8 &&
                 containsUppercase(password) &&
                 containsLowerCase(password) &&

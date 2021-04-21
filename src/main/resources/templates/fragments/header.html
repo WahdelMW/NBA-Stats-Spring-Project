@@ -29,9 +29,11 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/fantasyTeams}">Your Fantasy Teams</a>
                     </li>
+                    <span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                     <li>
                         <a class="nav-link" th:href="@{/createAccount}">Create Account</a>
                     </li>
+                    </span>
                 </ul>
                 <span sec:authorize="hasAnyAuthority('ROLE_USER','ROLE_ADMIN')">
                     <form th:action="@{/logout}" method="post">

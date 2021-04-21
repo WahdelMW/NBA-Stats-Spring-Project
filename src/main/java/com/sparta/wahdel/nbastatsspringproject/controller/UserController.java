@@ -1,6 +1,5 @@
 package com.sparta.wahdel.nbastatsspringproject.controller;
 
-import com.sparta.wahdel.nbastatsspringproject.entity.UsersEntity;
 import com.sparta.wahdel.nbastatsspringproject.service.UsersService;
 import com.sparta.wahdel.nbastatsspringproject.utils.InputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class UserController {
 
     @GetMapping("/createAccount")
     public String createAccount() {
-        return "createNewAccount";
+        return "/createNewAccount";
     }
 
     //Todo: create view
@@ -32,7 +31,9 @@ public class UserController {
             if (InputValidator.isValidUsername(username) && InputValidator.isValidPassword(password)) {
                 if (confirmPassword.equals(password)) {
                     usersService.saveUser(username, password, role);
-                    return "index";
+                    return "/index";
+                } else {
+                    System.out.println("Passwords don't match");
                 }
             } else {
                 System.out.println("Invalid Username");
