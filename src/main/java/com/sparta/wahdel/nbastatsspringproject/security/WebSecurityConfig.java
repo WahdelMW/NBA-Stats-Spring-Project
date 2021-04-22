@@ -38,8 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/", "/index", "/players/**", "/teams/**", "/fantasyTeams", "/createAccount")
-                .permitAll() // (3)
+                .antMatchers("/verifyAddedPlayers?")
+                .hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/createAccount")
+                .access("not (hasRole('ROLE_USER'))")
+                .antMatchers("/", "/index", "/players/**", "/teams/**", "/fantasyTeams")
+                .permitAll()
                 .anyRequest()
                 .authenticated() // (4)
                 .and()
