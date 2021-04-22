@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Fantasy Teams</title>
@@ -19,11 +19,13 @@
 </table>
 
 <div class="text-center">
+    <span sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')">
     <form method="post" th:action="@{/}">
         <button type="button" class="btn bg-color-red my-3 mx-1" data-bs-toggle="modal"
                 th:attr="data-bs-target=${'#addNewFantasyTeam'}">Add Fantasy Team
         </button>
     </form>
+    </span>
 </div>
 
 <div th:insert="/fragments/newFantasyTeamForm"></div>
