@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>New Account</title>
@@ -22,8 +23,10 @@
                 </label>
                 <select style="text-align-last: center" class="form-control" name="role" id="role"
                         required>
+                    <span sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                     <option value=""> Select Role</option>
                     <option th:value="ROLE_ADMIN" th:text="Admin"></option>
+                    </span>
                     <option th:value="ROLE_USER" th:text="User"></option>
                 </select>
                 </div>
